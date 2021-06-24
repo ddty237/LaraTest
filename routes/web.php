@@ -18,8 +18,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/dashboard',[ProduitsController::class,'store']);
+Route::get('/produit/create',[ProduitsController::class,'create']);
+Route::get('/produit/{produit}',[ProduitsController::class,'show']);
+Route::get('/produit/{produit}/edit',[ProduitsController::class,'edit']);
+Route::patch('produit/{produit}', [ProduitsController::class, 'update']);
+Route::delete('produit/{produit}',[ProduitsController::class, 'destroy']);
+
 Route::get('/dashboard',
-    [ProduitsController::class,'list']
+    [ProduitsController::class,'index']
 )->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
